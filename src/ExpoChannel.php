@@ -70,8 +70,7 @@ class ExpoChannel
      */
     public function interestName($notifiable)
     {
-        $class = str_replace('\\', '.', get_class($notifiable));
 
-        return $class.'.'.$notifiable->getKey();
+        return $notifiable->getKey();
     }
 }

@@ -18,8 +18,7 @@ class ExpoDatabaseDriver implements ExpoRepository
     public function store($key, $value): bool
     {
         $interest = Interest::firstOrCreate([
-            'key' => $key,
-            'value' => $value,
+            'expo_token' => $value,
         ]);
 
         return $interest instanceof Interest;
@@ -34,7 +33,7 @@ class ExpoDatabaseDriver implements ExpoRepository
      */
     public function retrieve(string $key)
     {
-        return Interest::where('key', $key)->pluck('value')->toArray();
+        return Interest::where('id', $key)->first()->pluck('expo_token')->toArray();
     }
 
     /**
@@ -47,10 +46,10 @@ class ExpoDatabaseDriver implements ExpoRepository
      */
     public function forget(string $key, string $value = null): bool
     {
-        $query = Interest::where('key', $key);
+        $query = Interest::where('id', $key);
 
         if ($value) {
-            $query->where('value', $value);
+            $query->where('expo_token', $value);
         }
 
         return $query->delete() > 0;

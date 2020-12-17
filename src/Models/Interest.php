@@ -13,6 +13,7 @@ class Interest extends Model
      */
     protected $table;
 
+
     /**
      * The event map for the model.
      *
@@ -26,8 +27,7 @@ class Interest extends Model
      * @var array
      */
     protected $fillable = [
-        'key',
-        'value',
+        'expo_token',
     ];
 
     /**
